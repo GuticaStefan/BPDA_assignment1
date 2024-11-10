@@ -97,3 +97,14 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+## Trading-cards
+
+The project exposes 3 endpoints: 
+- /nft/properties -> it calls getYourNftCardProperties endpoint from the SC, and returns the assigned NFT attributes
+- /nft/supply/:properties/nonce -> it calls nftSupply endpoint from the SC, search the attribute within the list returned by the SC and it return the index of the nft with the specified attribute, being the NFT nonce
+- /nft/exchange/:nonce + Nft to transfer identifier as a query param-> it calls the exchangeNft endpoint from the SC.
+
+to issue NFT with custom attributes, I used mxpy :
+// mxpy contract call erd1vhfuv9qznn59vlasthdgsp7pzc99snzvchvcrjzhgn3cdequ7jxsvwtu50 --pem bpda_wallet.pem --proxy https://devnet-api.multiversx.com --chain D --recall-nonce --gas-limit 60000000 --function ESDTNFTCreate --arguments 0x534e46542d343033613334 0x01 0x73746566616e2e677574696361 0x1d4c 0x 0x050100 0x68747470733a2f2f697066732e696f2f697066732f516d5479366a546458613475686e3831736a6f58436554394c767a51437664396e343476475a62374c3252414e31 --send
